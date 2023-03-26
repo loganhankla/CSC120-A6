@@ -13,21 +13,27 @@ public class House extends Building {
   private ArrayList<String> residents; 
   private boolean hasDiningRoom; 
 
-
   public House(String name, String address, int nFloors, boolean diningRoom) {
     //System.out.println("You have built a house: 🏠");
     super(name, address, nFloors); 
     this.residents = new ArrayList<String>(); 
     this.hasDiningRoom = diningRoom; 
-    this.nResidents = residents.size(); //check
   }
 
-  public void moveIn(String name){ //check
+  public boolean hasDiningRoom(){
+    return this.hasDiningRoom;
+  }
+
+  public int nResidents(){
+    return this.residents.size();
+  }
+
+  public void moveIn(String name){ 
     this.residents.add(name);
   }
 
-  public String moveOut(String name){ //check
-    if(this.residents.contains(name)){
+  public String moveOut(String name){ 
+    if(isResident(name)){
       this.residents.remove(name);
       return name;
     } else{
@@ -35,7 +41,7 @@ public class House extends Building {
     }
   }
 
-  public boolean isResident(String person){ //check
+  public boolean isResident(String person){ 
     if(this.residents.contains(person)){
       return true;
     } else{
@@ -45,7 +51,7 @@ public class House extends Building {
 
   public String toString() {
     String description = super.toString();
-    description += " There are currently" + this.residents.size() + "residents in this house.";
+    description += " There are currently " + this.residents.size() + " residents in this house. ";
     description += "This house";
     if (this.hasDiningRoom){
       description += " has";
@@ -56,9 +62,11 @@ public class House extends Building {
     description += " a dining room.";
     return description;
   }
+
   public static void main(String[] args) {
     //new House();
     House wilson = new House("Wilson House", "16 Kensington Ave", 4, true);
+    System.out.println(wilson);
   }
 
 }
