@@ -64,9 +64,16 @@ public class House extends Building {
   }
 
   public static void main(String[] args) {
-    //new House();
     House wilson = new House("Wilson House", "16 Kensington Ave", 4, true);
+    //wilson.moveIn("Claire");
+    //wilson.isResident("Claire");
+    //wilson.moveOut("Claire");
     System.out.println(wilson);
   }
 
 }
+
+
+//Questions:
+// * how to check residents?
+// * how to try/catch exception?
