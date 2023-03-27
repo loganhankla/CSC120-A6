@@ -15,10 +15,10 @@
     public Cafe(String name, String address, int nFloors) {
         super(name, address, nFloors);
         System.out.println("You have built a cafe: ☕");
-        this.nCoffeeOunces = 200.0;
-        this.nSugarPackets = 175.0;
-        this.nCreams = 109.0;
-        this.nCups = 47.0;
+        this.nCoffeeOunces = 200;
+        this.nSugarPackets = 175;
+        this.nCreams = 109;
+        this.nCups = 47;
     }
 
     public void sellCoffee(int size, int nSugarPackets, int nCreams){
@@ -31,20 +31,17 @@
                         this.nCreams -= nCreams;
                         this.nCups -= 1;
                     } else{
-                        //or should I just restock?
-                        throw new RuntimeException("There are not enough cups in stock.");
+                        this.restock(0, 0, 0, 47);
                     }
                 } else{ 
-                    throw new RuntimeException("There is not enough cream in stock to fulfill this sale.");
+                    this.restock(0, 0, 109, 0);
                 }
             } else{
-                throw new RuntimeException("There are not enough sugar packets in stock.");
+                this.restock(0, 175, 0, 0);
             }
         } else{
-            throw new RuntimeException("There is not enough coffee in stock to fulfill this order.");
+            this.restock(200, 0, 0, 0);
         }
-        
-        
     }
 
     private void restock(int nCoffeeOunces, int nSugarPackets, int nCreams, int nCups){
@@ -55,9 +52,14 @@
     }
     
     public static void main(String[] args) {
-        Cafe compass = new Cafe("Compass Cafe", );
-
-        //try sellCoffee, catch and use restock -
+        Cafe compass = new Cafe("Compass Cafe", "2 Chapin Way", 1);
+        compass.sellCoffee(6, 2, 2);
+        compass.sellCoffee(53, 2, 68);
+        compass.sellCoffee(100, 56, 55);
+        System.out.println("Coffee in Stock (oz): " + compass.nCoffeeOunces);
+        System.out.println("Sugar in Stock: " + compass.nSugarPackets);
+        System.out.println("Creams in Stock: " + compass.nCreams);
+        System.out.println("Cups in Stock: " + compass.nCups);
     }
     
 }
