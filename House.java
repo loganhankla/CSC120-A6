@@ -2,7 +2,7 @@
  * Filename: House.java
  * Description: The House class is a subclass of the superclass, Building. It stores information about the house & residents.
  * @author Logan Hankla
- * Date: March 2023
+ * Date: 27 March 2023
  */
 
 import java.util.ArrayList;
@@ -12,6 +12,12 @@ public class House extends Building {
   private ArrayList<String> residents; 
   private boolean hasDiningRoom; 
 
+  /** The House constructor creates a new House that inherits from the Building class.
+   * @param name The name of the new House.
+   * @param address The address of the new House.
+   * @param nFloors The number of floors in the new House.
+   * @param diningRoom A boolean  for whether the House contains a dining room.
+   */
   public House(String name, String address, int nFloors, boolean diningRoom) {
     //System.out.println("You have built a house: 🏠");
     super(name, address, nFloors); 
@@ -19,19 +25,37 @@ public class House extends Building {
     this.hasDiningRoom = diningRoom; 
   }
 
+  /**This getter returns a boolean for whether or not a House has a dining room.
+   * @return Whether the particular House has a dining room.
+   */
   public boolean hasDiningRoom(){
     return this.hasDiningRoom;
   }
 
+  /** This method returns the number of residents in the House based on the size of the ArrayList of residents.
+   * @return Number of residents in House.
+   */
   public int nResidents(){
     return this.residents.size();
   }
 
+  /** This method allows a person to move in by adding them to the residents ArrayList if they are not already in there.
+   * @param name Name of the person moving into the house.
+   * @throws RuntimeException 
+   */
   public void moveIn(String name){ 
-    this.residents.add(name);
-    //wants to move in but already lives there -- throw exception
+    if(!this.residents.contains(name)){
+      this.residents.add(name);
+    } else{
+      throw new RuntimeException(name + " already lives in this house.");
+    }
   }
 
+  /** This method allows a person to move out of the House by removing them from the residents ArrayList after checking if they are currently a resident.
+   * @param name Name of the resident moving out
+   * @return Name of resident moving
+   * @throws RuntimeException
+   */
   public String moveOut(String name){ 
     if(isResident(name)){
       this.residents.remove(name);
@@ -41,6 +65,10 @@ public class House extends Building {
     }
   }
 
+/** This method checks whether a person is a current resident in the house.
+ * @param person The person we see if is a resident
+ * @return boolean for whether the person is a resident
+ */
   public boolean isResident(String person){ 
     if(this.residents.contains(person)){
       return true;
@@ -49,6 +77,9 @@ public class House extends Building {
     }
   }
 
+/** This toString method creates a description of the House.
+ * @return Description of house
+ */
   public String toString() {
     String description = super.toString();
     description += " There are currently " + this.residents.size() + " residents in this house. ";
@@ -74,9 +105,4 @@ public class House extends Building {
     //wilson.moveOut("Logan");
     System.out.println(wilson);
   }
-
 }
-
-
-//Questions:
-// * how to try/catch exception?
