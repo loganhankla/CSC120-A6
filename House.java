@@ -8,7 +8,6 @@
 import java.util.ArrayList;
 
 public class House extends Building {
-// in class added "extends Building"
   
   private ArrayList<String> residents; 
   private boolean hasDiningRoom; 
