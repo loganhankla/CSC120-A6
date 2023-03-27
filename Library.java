@@ -1,6 +1,6 @@
 /**
  * Filename: Library.java
- * Description: The Library class is a subclass of the Building superclass. It XXX
+ * Description: The Library class is a subclass of the Building superclass. It stores information about the building and book collection.
  * @author Logan Hankla
  * Date: March 2023
  */
@@ -22,28 +22,36 @@ public class Library extends Building {
   }
 
   public String removeTitle(String title){
-    this.collection.remove(title);
-    return title;
-  }
-
-  public void checkOut(String title){
-    this.collection.replace(title, true, false);
-  }
-
-  public void returnBook(String title){
-    this.collection.replace(title, false, true);
-  }
-
-  public boolean containsTitle(String title){
-    if(this.collection.contains(title)){
-      return true;
+    if(containsTitle(title)){
+      this.collection.remove(title);
+      return title;
     } else{
-      return false;
+      throw new RuntimeException("This book is not currently in the collection.");
     }
   }
 
+  public void checkOut(String title){
+    if(isAvailable(title)){
+      this.collection.replace(title, false);
+    } else{
+      throw new RuntimeException("This book is not currently available.");
+    }
+  }
+
+  public void returnBook(String title){
+    if(containsTitle(title)){
+      this.collection.replace(title, true);
+    } else{
+      throw new RuntimeException("This book is not currently part of the library's collection.");
+    }
+  }
+
+  public boolean containsTitle(String title){
+    return this.collection.containsKey(title);
+  }
+
   public boolean isAvailable(String title){
-    if(this.collection.get(title) == true){
+    if(this.collection.get(title)){
       return true;
     } else{
       return false;
@@ -51,11 +59,23 @@ public class Library extends Building {
   }
 
   public void printCollection(){
-    
+    for(String title : this.collection.keySet()){
+      System.out.println("Title: " + title + " | Available: " + this.collection.get(title));
+    }
   }
 
   public static void main(String[] args) {
-    Library neilson = new Library();
+    Library neilson = new Library("Neilson Library", "1 Chapin Way", 4);
+    neilson.addTitle("Great Expectations");
+    neilson.addTitle("On Such a Full Sea");
+    neilson.addTitle("The Other Black Girl");
+    neilson.printCollection();
+    neilson.removeTitle("Great Expectations");
+    neilson.checkOut("On Such a Full Sea");
+    neilson.checkOut("The Other Black Girl");
+    neilson.returnBook("On Such a Full Sea");
+    System.out.println("Second print: ");
+    neilson.printCollection();
   }
   
 }

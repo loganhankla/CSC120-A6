@@ -29,6 +29,7 @@ public class House extends Building {
 
   public void moveIn(String name){ 
     this.residents.add(name);
+    //wants to move in but already lives there -- throw exception
   }
 
   public String moveOut(String name){ 
@@ -70,7 +71,7 @@ public class House extends Building {
     System.out.println(wilson.isResident("Claire"));
     wilson.moveOut("Claire");
     System.out.println(wilson.isResident("Claire"));
-    wilson.moveOut("Logan");
+    //wilson.moveOut("Logan");
     System.out.println(wilson);
   }
 

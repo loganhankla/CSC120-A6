@@ -55,7 +55,7 @@
     }
     
     public static void main(String[] args) {
-        new Cafe();
+        Cafe compass = new Cafe("Compass Cafe", );
 
         //try sellCoffee, catch and use restock -
     }
