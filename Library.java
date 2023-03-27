@@ -43,7 +43,11 @@ public class Library extends Building {
   }
 
   public boolean isAvailable(String title){
-
+    if(this.collection.get(title) == true){
+      return true;
+    } else{
+      return false;
+    }
   }
 
   public void printCollection(){
@@ -51,7 +55,7 @@ public class Library extends Building {
   }
 
   public static void main(String[] args) {
-    new Library();
+    Library neilson = new Library();
   }
   
 }
