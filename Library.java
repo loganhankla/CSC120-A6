@@ -2,7 +2,7 @@
  * Filename: Library.java
  * Description: The Library class is a subclass of the Building superclass. It stores information about the building and book collection.
  * @author Logan Hankla
- * Date: March 2023
+ * Date: 27 March 2023
  */
 
 import java.util.Hashtable;

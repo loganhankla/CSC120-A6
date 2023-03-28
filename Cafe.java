@@ -2,7 +2,7 @@
  * Filename: Cafe.java
  * Description: The Cafe class is a subclass of the superclass, Building. It stores information about the building and cafe inventory.
  * @author Logan Hankla
- * Date: March 2023
+ * Date: 27 March 2023
  */
 
  public class Cafe extends Building {
@@ -12,6 +12,11 @@
     private int nCreams;
     private int nCups;
     
+    /** The Cafe constructor creates a new Cafe that inherits from the Building class.
+     * @param name The name of the Cafe
+     * @param address The address of the Cafe
+     * @param nFloors The number of floors in the Cafe
+     */
     public Cafe(String name, String address, int nFloors) {
         super(name, address, nFloors);
         System.out.println("You have built a cafe: ☕");
@@ -21,6 +26,11 @@
         this.nCups = 47;
     }
 
+    /** This method is used to sell coffee, altering the inventory after a sale is made.
+     * @param size The number of ounces of coffee in the sale
+     * @param nSugarPackets The number of sugar packets in the sale
+     * @param nCreams The number of cream splashes in the sale
+     */
     public void sellCoffee(int size, int nSugarPackets, int nCreams){
         if(this.nCoffeeOunces >= size){
             if(this.nSugarPackets >= nSugarPackets){
@@ -44,6 +54,12 @@
         }
     }
 
+    /** This method restocks the inventory as needed.
+     * @param nCoffeeOunces The number of ounces of coffee to restock
+     * @param nSugarPackets The number of sugar packets to restock
+     * @param nCreams The number of splashes of cream to restock
+     * @param nCups The number of cups to restock
+     */
     private void restock(int nCoffeeOunces, int nSugarPackets, int nCreams, int nCups){
         this.nCoffeeOunces += nCoffeeOunces;
         this.nSugarPackets += nSugarPackets;
