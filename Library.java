@@ -11,16 +11,29 @@ public class Library extends Building {
 
   private Hashtable<String, Boolean> collection;
 
+  /** The Library constructor creates a new Library that inherits from the Building class.
+   * @param name The name of the library  
+   * @param address The address of the library
+   * @param nFloors The number of floors in the library
+   */
   public Library(String name, String address, int nFloors) {
     super(name, address, nFloors);
     System.out.println("You have built a library: 📖");
     this.collection = new Hashtable<String, Boolean>();
   }
 
+  /** This method adds a book to the collection by adding the title as a key in the Hashtable collection and true as the value.
+   * @param title The title of the book added to the collection
+   */
   public void addTitle(String title){
     this.collection.put(title, true);
   }
 
+  /** This methods removes a title from the collection after checking whether it is currently part of the collection.
+   * @param title The title of the book being removed from the collection
+   * @return The title of the book being removed from the collection
+   * @throws RuntimeException
+   */
   public String removeTitle(String title){
     if(containsTitle(title)){
       this.collection.remove(title);
@@ -30,6 +43,10 @@ public class Library extends Building {
     }
   }
 
+  /** This method allows a title to be checked out from the collection, changing the value of the title key to false.
+   * @param title The title of the book being checked out
+   * @throws RuntimeException
+   */
   public void checkOut(String title){
     if(isAvailable(title)){
       this.collection.replace(title, false);
@@ -38,6 +55,10 @@ public class Library extends Building {
     }
   }
 
+  /** This methods allows a title to be returned to the collection, changing the value of the title key to true.
+   * @param title The title of the book being returned
+   * @throws RuntimeException
+   */
   public void returnBook(String title){
     if(containsTitle(title)){
       this.collection.replace(title, true);
@@ -46,10 +67,18 @@ public class Library extends Building {
     }
   }
 
+  /** This method checks whether the collection contains a given title.
+   * @param title The title of the book we want to see if is in the collection
+   * @return Boolean for whether the collection contains the book
+   */
   public boolean containsTitle(String title){
     return this.collection.containsKey(title);
   }
 
+  /** This method checks whether a given book is available to be checked out.
+   * @param title The title of the book we're checking
+   * @return Boolean for whether the book is available
+   */
   public boolean isAvailable(String title){
     if(this.collection.get(title)){
       return true;
@@ -58,6 +87,8 @@ public class Library extends Building {
     }
   }
 
+  /** This method prints the current contents of the collection, including whether a given book is available.
+   */
   public void printCollection(){
     for(String title : this.collection.keySet()){
       System.out.println("Title: " + title + " | Available: " + this.collection.get(title));
